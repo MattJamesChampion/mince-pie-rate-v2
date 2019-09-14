@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace MincePieRateV2.Web.Data
+namespace MincePieRateV2.DAL.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MincePieRateV2.Web.Data;
+using MincePieRateV2.DAL.Data;
 
 namespace MincePieRateV2.Web
 {
