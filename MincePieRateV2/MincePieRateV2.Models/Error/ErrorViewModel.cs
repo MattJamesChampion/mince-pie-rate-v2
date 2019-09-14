@@ -1,6 +1,6 @@
 using System;
 
-namespace MincePieRateV2.Web.Models
+namespace MincePieRateV2.Models.Error
 {
     public class ErrorViewModel
     {
