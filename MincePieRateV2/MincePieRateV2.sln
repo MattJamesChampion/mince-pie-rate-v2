@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MincePieRateV2.Web", "Mince
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MincePieRateV2.DAL", "MincePieRateV2.DAL\MincePieRateV2.DAL.csproj", "{EE9F225F-699F-4450-A1C0-AAB929419325}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MincePieRateV2.Models", "MincePieRateV2.Models\MincePieRateV2.Models.csproj", "{33A20D33-B6FF-4393-898F-41F16D1D1F5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EE9F225F-699F-4450-A1C0-AAB929419325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE9F225F-699F-4450-A1C0-AAB929419325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE9F225F-699F-4450-A1C0-AAB929419325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A20D33-B6FF-4393-898F-41F16D1D1F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A20D33-B6FF-4393-898F-41F16D1D1F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A20D33-B6FF-4393-898F-41F16D1D1F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A20D33-B6FF-4393-898F-41F16D1D1F5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
