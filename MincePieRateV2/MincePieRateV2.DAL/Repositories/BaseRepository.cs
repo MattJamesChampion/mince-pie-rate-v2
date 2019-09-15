@@ -20,6 +20,12 @@ namespace MincePieRateV2.DAL.Repositories
             Table = context.Set<T>();
         }
 
+        public void Add(T entity)
+        {
+            Table.Add(entity);
+            Context.SaveChanges();
+        }
+
         public T GetEntity(Func<T, bool> predicate)
         {
             return Table.Where(predicate).FirstOrDefault();

@@ -21,5 +21,18 @@ namespace MincePieRateV2.Web.Controllers
         {
             return View(_mincePieRepository.GetEntities());
         }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(MincePie mincePie)
+        {
+            _mincePieRepository.Add(mincePie);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
