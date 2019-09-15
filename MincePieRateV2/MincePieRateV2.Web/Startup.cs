@@ -15,7 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MincePieRateV2.Web.Data;
 using MincePieRateV2.DAL.Data;
 using MincePieRateV2.DAL.Repositories;
-using MincePieRateV2.Web.Models.Domain;
+using MincePieRateV2.Models.Domain;
 
 namespace MincePieRateV2.Web
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MincePieRateV2.Web.Models.Domain
+namespace MincePieRateV2.Models.Domain
 {
     public class MincePie
     {

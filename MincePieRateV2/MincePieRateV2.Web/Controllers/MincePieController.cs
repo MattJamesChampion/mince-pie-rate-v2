@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MincePieRateV2.DAL.Repositories;
-using MincePieRateV2.Web.Models.Domain;
+using MincePieRateV2.Models.Domain;
 
 namespace MincePieRateV2.Web.Controllers
 {

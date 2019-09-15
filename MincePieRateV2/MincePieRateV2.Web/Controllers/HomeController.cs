@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MincePieRateV2.Models.Error;
-using MincePieRateV2.Web.Models;
+using MincePieRateV2.Models;
 
 namespace MincePieRateV2.Web.Controllers
 {

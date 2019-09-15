@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MincePieRateV2.Web.Models.Domain;
+using MincePieRateV2.Models.Domain;
 
 namespace MincePieRateV2.DAL.Data
 {

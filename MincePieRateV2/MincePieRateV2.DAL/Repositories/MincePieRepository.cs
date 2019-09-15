@@ -1,5 +1,5 @@
 ﻿using MincePieRateV2.DAL.Data;
-using MincePieRateV2.Web.Models.Domain;
+using MincePieRateV2.Models.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
