@@ -42,5 +42,18 @@ namespace MincePieRateV2.Web.Controllers
         {
             return View(_mincePieRepository.GetEntity(m => m.Id == Id));
         }
+
+        [HttpGet("Delete/{Id:int}")]
+        public IActionResult Delete(int Id)
+        {
+            return View(_mincePieRepository.GetEntity(m => m.Id == Id));
+        }
+
+        [HttpPost("Delete/{Id:int}")]
+        public IActionResult Delete(MincePie mincePie)
+        {
+            _mincePieRepository.Delete(mincePie);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -42,5 +42,11 @@ namespace MincePieRateV2.DAL.Repositories
                 return Table;
             }
         }
+
+        public void Delete(T entity)
+        {
+            Table.Remove(entity);
+            Context.SaveChanges();
+        }
     }
 }

@@ -7,8 +7,16 @@ namespace MincePieRateV2.DAL.Repositories
 {
     public interface IRepository<T>
     {
+        //Create
         void Add(T entity);
+
+        //Read
         T GetEntity(Func<T, bool> predicate);
         IEnumerable<T> GetEntities(Func<T, bool> predicate=null);
+
+        //Update
+
+        //Delete
+        void Delete(T entity);
     }
 }
