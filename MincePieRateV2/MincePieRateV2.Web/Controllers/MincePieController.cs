@@ -8,6 +8,7 @@ using MincePieRateV2.Web.Models.Domain;
 
 namespace MincePieRateV2.Web.Controllers
 {
+    [Route("MincePie")]
     public class MincePieController : Controller
     {
         private readonly IRepository<MincePie> _mincePieRepository;
@@ -17,26 +18,26 @@ namespace MincePieRateV2.Web.Controllers
             _mincePieRepository = mincePieRepository;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View(_mincePieRepository.GetEntities());
         }
 
-        [HttpGet]
+        [HttpGet("Add")]
         public IActionResult Add()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         public IActionResult Add(MincePie mincePie)
         {
             _mincePieRepository.Add(mincePie);
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("{Id:int}")]
-        [HttpGet]
+        [HttpGet("Details/{Id:int}")]
         public IActionResult Details(int Id)
         {
             return View(_mincePieRepository.GetEntity(m => m.Id == Id));
