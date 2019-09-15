@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MincePieRateV2.Web.Data;
 using MincePieRateV2.DAL.Data;
+using MincePieRateV2.DAL.Repositories;
+using MincePieRateV2.Web.Models.Domain;
 
 namespace MincePieRateV2.Web
 {
@@ -44,6 +46,8 @@ namespace MincePieRateV2.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddTransient(typeof(IRepository<MincePie>), typeof(MincePieRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
