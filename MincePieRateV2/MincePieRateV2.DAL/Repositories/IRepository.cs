@@ -15,6 +15,7 @@ namespace MincePieRateV2.DAL.Repositories
         IEnumerable<T> GetEntities(Func<T, bool> predicate=null);
 
         //Update
+        void Update(T entity);
 
         //Delete
         void Delete(T entity);
