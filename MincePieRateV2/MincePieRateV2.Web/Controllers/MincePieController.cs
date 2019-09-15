@@ -34,5 +34,12 @@ namespace MincePieRateV2.Web.Controllers
             _mincePieRepository.Add(mincePie);
             return RedirectToAction(nameof(Index));
         }
+
+        [Route("{Id:int}")]
+        [HttpGet]
+        public IActionResult Details(int Id)
+        {
+            return View(_mincePieRepository.GetEntity(m => m.Id == Id));
+        }
     }
 }
