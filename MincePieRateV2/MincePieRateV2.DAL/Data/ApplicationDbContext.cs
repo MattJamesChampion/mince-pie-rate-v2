@@ -36,11 +36,12 @@ namespace MincePieRateV2.DAL.Data
 
         public void UpdateModelMetadata()
         {
+            //https://www.entityframeworktutorial.net/faq/set-created-and-modified-date-in-efcore.aspx
             var entries = ChangeTracker
                 .Entries()
                 .Where(e => e.Entity is ModelMetadata && (
-                e.State == EntityState.Added
-                || e.State == EntityState.Modified));
+                    e.State == EntityState.Added
+                    || e.State == EntityState.Modified));
 
             foreach (var entry in entries)
             {
