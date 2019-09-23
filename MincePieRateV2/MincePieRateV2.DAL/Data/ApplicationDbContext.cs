@@ -14,6 +14,7 @@ namespace MincePieRateV2.DAL.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<MincePie> MincePies { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
