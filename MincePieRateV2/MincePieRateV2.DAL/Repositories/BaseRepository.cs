@@ -20,18 +20,18 @@ namespace MincePieRateV2.DAL.Repositories
             Table = context.Set<T>();
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             Table.Add(entity);
             Context.SaveChanges();
         }
 
-        public T GetEntity(Func<T, bool> predicate)
+        public virtual T GetEntity(Func<T, bool> predicate)
         {
             return Table.Where(predicate).FirstOrDefault();
         }
 
-        public IEnumerable<T> GetEntities(Func<T, bool> predicate = null)
+        public virtual IEnumerable<T> GetEntities(Func<T, bool> predicate = null)
         {
             if (predicate != null)
             {
@@ -43,13 +43,13 @@ namespace MincePieRateV2.DAL.Repositories
             }
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             Table.Update(entity);
             Context.SaveChanges();
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             Table.Remove(entity);
             Context.SaveChanges();
