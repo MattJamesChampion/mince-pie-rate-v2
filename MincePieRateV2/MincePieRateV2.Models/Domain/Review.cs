@@ -12,6 +12,7 @@ namespace MincePieRateV2.Models.Domain
         public int Id { get; set; }
 
         //Foreign Keys
+        [DisplayName("Mince Pie")]
         public MincePie MincePie { get; set; }
 
         //References
