@@ -47,7 +47,9 @@ namespace MincePieRateV2.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddTransient(typeof(IRepository<MincePie>), typeof(MincePieRepository));
+            services
+                .AddTransient(typeof(IRepository<MincePie>), typeof(MincePieRepository))
+                .AddTransient(typeof(IRepository<Review>), typeof(ReviewRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
