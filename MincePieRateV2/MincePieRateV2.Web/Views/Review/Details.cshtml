@@ -8,50 +8,7 @@
 
 <div>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MincePie)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MincePie.Id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PastryRating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PastryRating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FillingRating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FillingRating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AppearanceRating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AppearanceRating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AromaRating)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AromaRating)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ValueForMoney)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ValueForMoney)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FreeTextReview)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FreeTextReview)
-        </dd>
-    </dl>
+    @await Html.PartialAsync("_DeleteDetails", Model)
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
