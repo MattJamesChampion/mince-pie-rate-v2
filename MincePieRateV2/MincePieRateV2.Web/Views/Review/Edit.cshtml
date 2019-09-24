@@ -3,8 +3,6 @@
 
 @{
     ViewData["Title"] = "Edit Review";
-
-    var mincePies = (IEnumerable<MincePie>)ViewData["MincePies"];
 }
 
 <h1>Edit Review</h1>
@@ -12,43 +10,8 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="MincePieId" class="control-label"></label>
-                <select asp-for="MincePieId" class="form-control" asp-items="@(new SelectList(mincePies, "Id", "Name"))"></select>
-                <span asp-validation-for="MincePieId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PastryRating" class="control-label"></label>
-                <input asp-for="PastryRating" class="form-control" />
-                <span asp-validation-for="PastryRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FillingRating" class="control-label"></label>
-                <input asp-for="FillingRating" class="form-control" />
-                <span asp-validation-for="FillingRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AppearanceRating" class="control-label"></label>
-                <input asp-for="AppearanceRating" class="form-control" />
-                <span asp-validation-for="AppearanceRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AromaRating" class="control-label"></label>
-                <input asp-for="AromaRating" class="form-control" />
-                <span asp-validation-for="AromaRating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ValueForMoney" class="control-label"></label>
-                <input asp-for="ValueForMoney" class="form-control" />
-                <span asp-validation-for="ValueForMoney" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FreeTextReview" class="control-label"></label>
-                <input asp-for="FreeTextReview" class="form-control" />
-                <span asp-validation-for="FreeTextReview" class="text-danger"></span>
-            </div>
+            @await Html.PartialAsync("_AddEdit", Model, ViewData)
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
