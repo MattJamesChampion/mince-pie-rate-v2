@@ -52,14 +52,14 @@ namespace MincePieRateV2.Web.Controllers
             return View(_reviewRepository.GetEntity(m => m.Id == Id));
         }
 
-        [HttpGet("Update/{Id:int}")]
+        [HttpGet("Edit/{Id:int}")]
         public IActionResult Edit(int Id)
         {
             SetupDropdowns(ViewData);
             return View(_reviewRepository.GetEntity(m => m.Id == Id));
         }
 
-        [HttpPost("Update/{Id:int}")]
+        [HttpPost("Edit/{Id:int}")]
         public IActionResult Edit(Review review)
         {
             _reviewRepository.Update(review);
