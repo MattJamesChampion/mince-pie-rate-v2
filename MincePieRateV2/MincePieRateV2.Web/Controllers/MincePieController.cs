@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MincePieRateV2.DAL.Repositories;
 using MincePieRateV2.Models.Domain;
@@ -19,18 +20,21 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(_mincePieRepository.GetEntities());
         }
 
         [HttpGet("Add")]
+        [Authorize]
         public IActionResult Add()
         {
             return View();
         }
 
         [HttpPost("Add")]
+        [Authorize]
         public IActionResult Add(MincePie mincePie)
         {
             _mincePieRepository.Add(mincePie);
@@ -38,18 +42,21 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet("Details/{Id:int}")]
+        [AllowAnonymous]
         public IActionResult Details(int Id)
         {
             return View(_mincePieRepository.GetEntity(m => m.Id == Id));
         }
 
         [HttpGet("Edit/{Id:int}")]
+        [Authorize]
         public IActionResult Edit(int Id)
         {
             return View(_mincePieRepository.GetEntity(m => m.Id == Id));
         }
 
         [HttpPost("Edit/{Id:int}")]
+        [Authorize]
         public IActionResult Edit(MincePie mincePie)
         {
             _mincePieRepository.Update(mincePie);
@@ -57,12 +64,14 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet("Delete/{Id:int}")]
+        [Authorize]
         public IActionResult Delete(int Id)
         {
             return View(_mincePieRepository.GetEntity(m => m.Id == Id));
         }
 
         [HttpPost("Delete/{Id:int}")]
+        [Authorize]
         public IActionResult Delete(MincePie mincePie)
         {
             _mincePieRepository.Delete(mincePie);

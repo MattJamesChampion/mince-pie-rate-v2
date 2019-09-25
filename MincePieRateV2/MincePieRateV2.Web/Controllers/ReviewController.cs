@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using MincePieRateV2.DAL.Repositories;
@@ -27,12 +28,14 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View(_reviewRepository.GetEntities());
         }
 
         [HttpGet("Add")]
+        [Authorize]
         public IActionResult Add()
         {
             SetupDropdowns(ViewData);
@@ -40,6 +43,7 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpPost("Add")]
+        [Authorize]
         public IActionResult Add(Review review)
         {
             _reviewRepository.Add(review);
@@ -47,12 +51,14 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet("Details/{Id:int}")]
+        [AllowAnonymous]
         public IActionResult Details(int Id)
         {
             return View(_reviewRepository.GetEntity(m => m.Id == Id));
         }
 
         [HttpGet("Edit/{Id:int}")]
+        [Authorize]
         public IActionResult Edit(int Id)
         {
             SetupDropdowns(ViewData);
@@ -60,6 +66,7 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpPost("Edit/{Id:int}")]
+        [Authorize]
         public IActionResult Edit(Review review)
         {
             _reviewRepository.Update(review);
@@ -67,12 +74,14 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet("Delete/{Id:int}")]
+        [Authorize]
         public IActionResult Delete(int Id)
         {
             return View(_reviewRepository.GetEntity(m => m.Id == Id));
         }
 
         [HttpPost("Delete/{Id:int}")]
+        [Authorize]
         public IActionResult Delete(Review review)
         {
             _reviewRepository.Delete(review);
