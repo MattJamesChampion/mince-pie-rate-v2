@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MincePieRateV2.Models.Domain
@@ -31,6 +32,7 @@ namespace MincePieRateV2.Models.Domain
         [DisplayName("Value for Money")]
         public int ValueForMoney { get; set; }
         [DisplayName("Free-text Review")]
+        [DataType(DataType.MultilineText)]
         public string FreeTextReview { get; set; }
     }
 }

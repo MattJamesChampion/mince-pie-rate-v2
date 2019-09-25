@@ -41,6 +41,6 @@
         @Html.DisplayNameFor(model => model.FreeTextReview)
     </dt>
     <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.FreeTextReview)
+        @Html.EditorFor(model => model.FreeTextReview, additionalViewData: new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
     </dd>
 </dl>
