@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using MincePieRateV2.Models.Domain;
 using MincePieRateV2.Models.Metadata;
@@ -15,6 +17,8 @@ namespace MincePieRateV2.DAL.Data
     {
         public DbSet<MincePie> MincePies { get; set; }
         public DbSet<Review> Reviews { get; set; }
+
+        public Guid UserId;
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -46,10 +50,12 @@ namespace MincePieRateV2.DAL.Data
 
             foreach (var entry in entries)
             {
+                ((ModelMetadata)entry.Entity).ModifiedBy = UserId;
                 ((ModelMetadata)entry.Entity).ModifiedAt = DateTimeOffset.Now;
 
                 if (entry.State == EntityState.Added)
                 {
+                    ((ModelMetadata)entry.Entity).CreatedBy = UserId;
                     ((ModelMetadata)entry.Entity).CreatedAt = DateTimeOffset.Now;
                 }
             }

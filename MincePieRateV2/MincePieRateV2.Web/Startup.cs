@@ -16,6 +16,7 @@ using MincePieRateV2.Web.Data;
 using MincePieRateV2.DAL.Data;
 using MincePieRateV2.DAL.Repositories;
 using MincePieRateV2.Models.Domain;
+using MincePieRateV2.DAL.ActionFilters;
 
 namespace MincePieRateV2.Web
 {
@@ -45,7 +46,12 @@ namespace MincePieRateV2.Web
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+                .AddMvc(options =>
+                {
+                    options.Filters.Add(typeof(UserInitialiserActionFilter));
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services
                 .AddTransient(typeof(IRepository<MincePie>), typeof(MincePieRepository))
