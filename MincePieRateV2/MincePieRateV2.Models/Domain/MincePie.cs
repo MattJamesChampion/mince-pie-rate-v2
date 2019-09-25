@@ -11,5 +11,10 @@ namespace MincePieRateV2.Models.Domain
         public int Id { get; set; }
         public string Brand { get; set; }
         public string Name { get; set; }
+        public override string ToString()
+        {
+            return $"{Brand} - {Name}";
+        }
+        public string DisplayString => ToString();
     }
 }
