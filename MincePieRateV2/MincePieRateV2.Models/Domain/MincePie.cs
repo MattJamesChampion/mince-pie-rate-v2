@@ -1,6 +1,7 @@
 ﻿using MincePieRateV2.Models.Metadata;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace MincePieRateV2.Models.Domain
         {
             return $"{Brand} - {Name}";
         }
+        [NotMapped]
         public string DisplayString => ToString();
     }
 }
