@@ -146,7 +146,7 @@ namespace MincePieRateV2.Web
 
                     if (newUser.Result.Succeeded)
                     {
-                        var newUserRole = userManager.AddToRoleAsync(administrator, "Administrator");
+                        var newUserRole = userManager.AddToRoleAsync(administrator, RoleConstants.AdministratorRoleName);
                         newUserRole.Wait();
                     }
                 }
