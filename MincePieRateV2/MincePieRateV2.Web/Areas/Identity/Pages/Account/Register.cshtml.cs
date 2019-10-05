@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using MincePieRateV2.Web.Authorization.Constants;
 
 namespace MincePieRateV2.Web.Areas.Identity.Pages.Account
 {
@@ -79,6 +80,10 @@ namespace MincePieRateV2.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    await _userManager.AddToRoleAsync(user, RoleConstants.UserRoleName);
+
+                    _logger.LogInformation($"User added to the {RoleConstants.UserRoleName} role");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
