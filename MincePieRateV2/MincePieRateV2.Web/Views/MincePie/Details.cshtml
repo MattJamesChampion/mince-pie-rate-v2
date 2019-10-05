@@ -1,4 +1,5 @@
 ﻿@model MincePieRateV2.Models.Domain.MincePie
+@using MincePieRateV2.Web.Authorization.Constants
 
 @{
     ViewData["Title"] = "Mince Pie Details";
@@ -11,6 +12,10 @@
     @await Html.PartialAsync("_DeleteDetails", Model)
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @if (ViewContext.HttpContext.User.IsInRole(RoleConstants.AdministratorRoleName))
+    {    
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <Text> | </Text>
+    }
     <a asp-action="Index">Back to List</a>
 </div>
