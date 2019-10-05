@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MincePieRateV2.DAL.Repositories;
 using MincePieRateV2.Models.Domain;
+using MincePieRateV2.Web.Authorization.Constants;
 
 namespace MincePieRateV2.Web.Controllers
 {
@@ -49,14 +50,14 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet("Edit/{Id:int}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Edit(int Id)
         {
             return View(_mincePieRepository.GetEntity(m => m.Id == Id));
         }
 
         [HttpPost("Edit/{Id:int}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Edit(MincePie mincePie)
         {
             _mincePieRepository.Update(mincePie);
@@ -64,14 +65,14 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet("Delete/{Id:int}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Delete(int Id)
         {
             return View(_mincePieRepository.GetEntity(m => m.Id == Id));
         }
 
         [HttpPost("Delete/{Id:int}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Delete(MincePie mincePie)
         {
             _mincePieRepository.Delete(mincePie);

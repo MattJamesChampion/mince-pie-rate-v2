@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using MincePieRateV2.DAL.Repositories;
 using MincePieRateV2.Models.Domain;
+using MincePieRateV2.Web.Authorization.Constants;
 
 namespace MincePieRateV2.Web.Controllers
 {
@@ -58,7 +59,7 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet("Edit/{Id:int}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Edit(int Id)
         {
             SetupDropdowns(ViewData);
@@ -66,7 +67,7 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpPost("Edit/{Id:int}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Edit(Review review)
         {
             _reviewRepository.Update(review);
@@ -74,14 +75,14 @@ namespace MincePieRateV2.Web.Controllers
         }
 
         [HttpGet("Delete/{Id:int}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Delete(int Id)
         {
             return View(_reviewRepository.GetEntity(m => m.Id == Id));
         }
 
         [HttpPost("Delete/{Id:int}")]
-        [Authorize]
+        [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Delete(Review review)
         {
             _reviewRepository.Delete(review);
