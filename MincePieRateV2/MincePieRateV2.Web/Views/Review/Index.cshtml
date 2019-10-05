@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<MincePieRateV2.Models.Domain.Review>
+@using MincePieRateV2.Web.Authorization.Constants
 
 @{
     ViewData["Title"] = "Review List";
@@ -56,9 +57,17 @@
                     @Html.DisplayFor(modelItem => item.ValueForMoney)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if (ViewContext.HttpContext.User.IsInRole(RoleConstants.AdministratorRoleName))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <text> | </text>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (ViewContext.HttpContext.User.IsInRole(RoleConstants.AdministratorRoleName))
+                    {
+                        <text> | </text>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
                 </td>
             </tr>
         }
