@@ -21,7 +21,7 @@ namespace MincePieRateV2.DAL.Managers
             Directory.CreateDirectory(imageOutputDirectory);
 
             var guid = Guid.NewGuid();
-            var filePath = Path.Combine(imageOutputDirectory, guid.ToString());
+            var filePath = Path.Combine(imageOutputDirectory, guid.ToString() + formFile.GetFileExtension());
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
