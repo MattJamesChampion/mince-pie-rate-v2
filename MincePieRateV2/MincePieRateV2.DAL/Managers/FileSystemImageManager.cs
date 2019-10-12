@@ -31,7 +31,7 @@ namespace MincePieRateV2.DAL.Managers
             return guid;
         }
 
-        public async Task<IFormFile> GetImageAsync(Guid guid)
+        public async Task<string> GetImagePathAsync(Guid guid)
         {
             throw new NotImplementedException();
         }
