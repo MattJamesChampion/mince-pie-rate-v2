@@ -31,10 +31,10 @@ namespace MincePieRateV2.CrossCutting.ImageHandling.Extensions
             //-------------------------------------------
             //  Check the image extension
             //-------------------------------------------
-            if (Path.GetExtension(postedFile.FileName).ToLower() != ".jpg"
-                && Path.GetExtension(postedFile.FileName).ToLower() != ".png"
-                && Path.GetExtension(postedFile.FileName).ToLower() != ".gif"
-                && Path.GetExtension(postedFile.FileName).ToLower() != ".jpeg")
+            if (Path.GetExtension(postedFile.FileName).ToLower() != FileExtensions.jpg
+                && Path.GetExtension(postedFile.FileName).ToLower() != FileExtensions.png
+                && Path.GetExtension(postedFile.FileName).ToLower() != FileExtensions.gif
+                && Path.GetExtension(postedFile.FileName).ToLower() != FileExtensions.jpeg)
             {
                 return false;
             }
