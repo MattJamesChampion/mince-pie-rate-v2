@@ -92,5 +92,19 @@ namespace MincePieRateV2.CrossCutting.ImageHandling.Extensions
 
             return true;
         }
+
+        public static string GetFileExtension(this IFormFile formFile)
+        {
+            return formFile.ContentType switch
+            {
+                FileContentTypes.jpg => FileExtensions.jpg,
+                FileContentTypes.jpeg => FileExtensions.jpeg,
+                FileContentTypes.pjpeg => FileExtensions.jpeg,
+                FileContentTypes.gif => FileExtensions.gif,
+                FileContentTypes.xpng => FileExtensions.png,
+                FileContentTypes.png => FileExtensions.png,
+                _ => string.Empty,
+            };
+        }
     }
 }
