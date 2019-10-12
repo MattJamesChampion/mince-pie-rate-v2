@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using MincePieRateV2.CrossCutting.ImageHandling.Constants;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,12 +18,12 @@ namespace MincePieRateV2.CrossCutting.ImageHandling.Extensions
             //-------------------------------------------
             //  Check the image mime types
             //-------------------------------------------
-            if (postedFile.ContentType.ToLower() != "image/jpg" &&
-                        postedFile.ContentType.ToLower() != "image/jpeg" &&
-                        postedFile.ContentType.ToLower() != "image/pjpeg" &&
-                        postedFile.ContentType.ToLower() != "image/gif" &&
-                        postedFile.ContentType.ToLower() != "image/x-png" &&
-                        postedFile.ContentType.ToLower() != "image/png")
+            if (postedFile.ContentType.ToLower() != FileContentTypes.jpg &&
+                        postedFile.ContentType.ToLower() != FileContentTypes.jpeg &&
+                        postedFile.ContentType.ToLower() != FileContentTypes.pjpeg &&
+                        postedFile.ContentType.ToLower() != FileContentTypes.gif &&
+                        postedFile.ContentType.ToLower() != FileContentTypes.xpng &&
+                        postedFile.ContentType.ToLower() != FileContentTypes.png)
             {
                 return false;
             }
