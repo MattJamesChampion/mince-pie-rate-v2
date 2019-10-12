@@ -9,9 +9,9 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Add">
+        <form asp-action="Add" enctype="multipart/form-data">
             @await Html.PartialAsync("_AddEdit", Model)
-
+            <input type="file" accept="image/*" name="mincePieImage" class="form-control">
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

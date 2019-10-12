@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MincePieRateV2.CrossCutting\MincePieRateV2.CrossCutting.csproj" />
     <ProjectReference Include="..\MincePieRateV2.Models\MincePieRateV2.Models.csproj" />
   </ItemGroup>
 

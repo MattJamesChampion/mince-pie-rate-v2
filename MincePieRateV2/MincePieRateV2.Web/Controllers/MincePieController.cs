@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MincePieRateV2.DAL.Managers;
 using MincePieRateV2.DAL.Repositories;
 using MincePieRateV2.Models.Domain;
 using MincePieRateV2.Web.Authorization.Constants;
@@ -14,10 +16,12 @@ namespace MincePieRateV2.Web.Controllers
     public class MincePieController : Controller
     {
         private readonly IRepository<MincePie> _mincePieRepository;
+        private readonly IImageManager _imageManager;
 
-        public MincePieController(IRepository<MincePie> mincePieRepository)
+        public MincePieController(IRepository<MincePie> mincePieRepository, IImageManager imageManager)
         {
             _mincePieRepository = mincePieRepository;
+            _imageManager = imageManager;
         }
 
         [HttpGet]
@@ -36,8 +40,11 @@ namespace MincePieRateV2.Web.Controllers
 
         [HttpPost("Add")]
         [Authorize]
-        public IActionResult Add(MincePie mincePie)
+        public async Task<IActionResult> Add(MincePie mincePie, [FromForm] IFormFile mincePieImage)
         {
+            var imageId = await _imageManager.AddImageAsync(mincePieImage);
+            mincePie.ImageId = imageId;
+
             _mincePieRepository.Add(mincePie);
             return RedirectToAction(nameof(Index));
         }

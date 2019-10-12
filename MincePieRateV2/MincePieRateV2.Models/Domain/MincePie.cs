@@ -23,5 +23,7 @@ namespace MincePieRateV2.Models.Domain
         }
         [NotMapped]
         public string DisplayString => ToString();
+
+        public Guid ImageId { get; set; }
     }
 }

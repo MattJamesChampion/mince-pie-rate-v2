@@ -18,14 +18,18 @@ using MincePieRateV2.DAL.Repositories;
 using MincePieRateV2.Models.Domain;
 using MincePieRateV2.DAL.ActionFilters;
 using MincePieRateV2.Web.Authorization.Constants;
+using MincePieRateV2.DAL.Managers;
 
 namespace MincePieRateV2.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _environment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            _environment = environment;
         }
 
         public IConfiguration Configuration { get; }
@@ -59,6 +63,11 @@ namespace MincePieRateV2.Web
             services
                 .AddTransient(typeof(IRepository<MincePie>), typeof(MincePieRepository))
                 .AddTransient(typeof(IRepository<Review>), typeof(ReviewRepository));
+
+            if (_environment.IsDevelopment())
+            {
+                services.AddTransient(typeof(IImageManager), typeof(FileSystemImageManager));
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
