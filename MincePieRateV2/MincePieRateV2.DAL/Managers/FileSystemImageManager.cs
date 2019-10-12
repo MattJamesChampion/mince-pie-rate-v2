@@ -10,14 +10,14 @@ namespace MincePieRateV2.DAL.Managers
 {
     public class FileSystemImageManager : IImageManager
     {
+        private readonly string imageOutputDirectory = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images");
         public async Task<Guid> AddImageAsync(IFormFile formFile)
         {
             if (formFile == null || !formFile.IsImage())
             {
                 return Guid.Empty;
             }
-
-            var imageOutputDirectory = @"C:\Temp\MincePieRateV2";
+            
             Directory.CreateDirectory(imageOutputDirectory);
 
             var guid = Guid.NewGuid();
