@@ -35,3 +35,4 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+MincePieRateV2/MincePieRateV2.Web/wwwroot/images/
