@@ -31,11 +31,6 @@ namespace MincePieRateV2.DAL.Managers
             return guid;
         }
 
-        public async Task DeleteImageAsync(Guid guid)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IFormFile> GetImageAsync(Guid guid)
         {
             throw new NotImplementedException();

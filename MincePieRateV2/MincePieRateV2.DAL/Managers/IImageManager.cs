@@ -10,6 +10,5 @@ namespace MincePieRateV2.DAL.Managers
     {
         Task<Guid> AddImageAsync(IFormFile formFile);
         Task<IFormFile> GetImageAsync(Guid guid);
-        Task DeleteImageAsync(Guid guid);
     }
 }
