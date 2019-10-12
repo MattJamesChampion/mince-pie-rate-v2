@@ -12,7 +12,7 @@ namespace MincePieRateV2.DAL.Managers
     {
         public async Task<Guid> AddImageAsync(IFormFile formFile)
         {
-            if (!formFile.IsImage())
+            if (formFile == null || !formFile.IsImage())
             {
                 return Guid.Empty;
             }
