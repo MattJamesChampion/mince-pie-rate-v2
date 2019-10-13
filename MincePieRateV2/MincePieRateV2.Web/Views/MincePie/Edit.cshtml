@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit Mince Pie";
+    var imagePath = (string)ViewData["ImagePath"];
 }
 
 <h1>Edit Mince Pie</h1>
@@ -10,6 +11,11 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <input type="hidden" asp-for="Id" />
+            @if (!string.IsNullOrWhiteSpace(imagePath))
+            {
+                <img class="img" src="@Url.Content(imagePath)" />
+            }
+
             @await Html.PartialAsync("_AddEdit", Model)
 
             <div class="form-group">

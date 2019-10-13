@@ -1,5 +1,14 @@
 ﻿@model MincePieRateV2.Models.Domain.MincePie
 
+@{ 
+    var imagePath = (string)ViewData["ImagePath"];
+}
+
+@if (!string.IsNullOrWhiteSpace(imagePath))
+{
+    <img class="img" src="@Url.Content(imagePath)" />
+}
+
 <dl class="row">
     <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.Brand)

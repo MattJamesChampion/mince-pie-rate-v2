@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using MincePieRateV2.DAL.Managers;
 using MincePieRateV2.DAL.Repositories;
 using MincePieRateV2.Models.Domain;
@@ -51,16 +52,20 @@ namespace MincePieRateV2.Web.Controllers
 
         [HttpGet("Details/{Id:int}")]
         [AllowAnonymous]
-        public IActionResult Details(int Id)
+        public async Task<IActionResult> Details(int Id)
         {
-            return View(_mincePieRepository.GetEntity(m => m.Id == Id));
+            var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
+            await SetupImagePath(ViewData, mincePie);
+            return View(mincePie);
         }
 
         [HttpGet("Edit/{Id:int}")]
         [Authorize(Roles = RoleConstants.AdministratorRoleName)]
-        public IActionResult Edit(int Id)
+        public async Task<IActionResult> Edit(int Id)
         {
-            return View(_mincePieRepository.GetEntity(m => m.Id == Id));
+            var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
+            await SetupImagePath(ViewData, mincePie);
+            return View(mincePie);
         }
 
         [HttpPost("Edit/{Id:int}")]
@@ -73,9 +78,11 @@ namespace MincePieRateV2.Web.Controllers
 
         [HttpGet("Delete/{Id:int}")]
         [Authorize(Roles = RoleConstants.AdministratorRoleName)]
-        public IActionResult Delete(int Id)
+        public async Task<IActionResult> Delete(int Id)
         {
-            return View(_mincePieRepository.GetEntity(m => m.Id == Id));
+            var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
+            await SetupImagePath(ViewData, mincePie);
+            return View(mincePie);
         }
 
         [HttpPost("Delete/{Id:int}")]
@@ -84,6 +91,11 @@ namespace MincePieRateV2.Web.Controllers
         {
             _mincePieRepository.Delete(mincePie);
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task SetupImagePath(ViewDataDictionary viewData, MincePie mincePie)
+        {
+            viewData["ImagePath"] = await _imageManager.GetImagePathAsync(mincePie.ImageId);
         }
     }
 }
