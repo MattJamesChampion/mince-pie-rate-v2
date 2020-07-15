@@ -40,6 +40,7 @@ namespace MincePieRateV2.Web
         {
             public MappingProfile()
             {
+                CreateMap<MincePieCreateViewModel, MincePie>();
             }
         }
 
