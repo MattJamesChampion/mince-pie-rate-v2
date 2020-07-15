@@ -55,7 +55,7 @@ namespace MincePieRateV2.Web.Controllers
         public async Task<IActionResult> Details(int Id)
         {
             var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
-            await SetupImagePath(ViewData, mincePie);
+            ViewData["ImagePath"] = await SetupImagePath(mincePie);
             return View(mincePie);
         }
 
@@ -64,7 +64,7 @@ namespace MincePieRateV2.Web.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
-            await SetupImagePath(ViewData, mincePie);
+            ViewData["ImagePath"] = await SetupImagePath(mincePie);
             return View(mincePie);
         }
 
@@ -81,7 +81,7 @@ namespace MincePieRateV2.Web.Controllers
         public async Task<IActionResult> Delete(int Id)
         {
             var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
-            await SetupImagePath(ViewData, mincePie);
+            ViewData["ImagePath"] = await SetupImagePath(mincePie);
             return View(mincePie);
         }
 
@@ -93,9 +93,9 @@ namespace MincePieRateV2.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task SetupImagePath(ViewDataDictionary viewData, MincePie mincePie)
+        private async Task<string> SetupImagePath(MincePie mincePie)
         {
-            viewData["ImagePath"] = await _imageManager.GetImagePathAsync(mincePie.ImageId);
+            return await _imageManager.GetImagePathAsync(mincePie.ImageId);
         }
     }
 }
