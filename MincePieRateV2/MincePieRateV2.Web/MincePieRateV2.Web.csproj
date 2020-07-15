@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MincePieRateV2.DAL\MincePieRateV2.DAL.csproj" />
+    <ProjectReference Include="..\MincePieRateV2.ViewModels\MincePieRateV2.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

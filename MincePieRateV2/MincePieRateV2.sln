@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MincePieRateV2.DAL", "Mince
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MincePieRateV2.Models", "MincePieRateV2.Models\MincePieRateV2.Models.csproj", "{33A20D33-B6FF-4393-898F-41F16D1D1F5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MincePieRateV2.CrossCutting", "MincePieRateV2.CrossCutting\MincePieRateV2.CrossCutting.csproj", "{3B492465-889B-473B-97A6-BB44DA2F5DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MincePieRateV2.CrossCutting", "MincePieRateV2.CrossCutting\MincePieRateV2.CrossCutting.csproj", "{3B492465-889B-473B-97A6-BB44DA2F5DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MincePieRateV2.ViewModels", "MincePieRateV2.ViewModels\MincePieRateV2.ViewModels.csproj", "{536F2E4A-CF2D-408F-A50A-300F3DB5E223}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3B492465-889B-473B-97A6-BB44DA2F5DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B492465-889B-473B-97A6-BB44DA2F5DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B492465-889B-473B-97A6-BB44DA2F5DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{536F2E4A-CF2D-408F-A50A-300F3DB5E223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{536F2E4A-CF2D-408F-A50A-300F3DB5E223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{536F2E4A-CF2D-408F-A50A-300F3DB5E223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{536F2E4A-CF2D-408F-A50A-300F3DB5E223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
