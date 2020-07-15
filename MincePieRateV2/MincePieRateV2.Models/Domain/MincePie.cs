@@ -17,6 +17,12 @@ namespace MincePieRateV2.Models.Domain
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+        public override string ToString()
+        {
+            return $"{Brand} - {Name}";
+        }
+        [NotMapped]
+        public string DisplayString => ToString();
         public Guid ImageId { get; set; }
     }
 }
