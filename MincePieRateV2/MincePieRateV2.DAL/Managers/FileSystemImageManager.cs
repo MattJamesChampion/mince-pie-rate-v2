@@ -16,7 +16,7 @@ namespace MincePieRateV2.DAL.Managers
         {
             if (formFile == null || !formFile.IsImage())
             {
-                return Guid.Empty;
+                throw new ArgumentException("Submitted file is either null or not an image");
             }
             
             Directory.CreateDirectory(imageOutputDirectory);

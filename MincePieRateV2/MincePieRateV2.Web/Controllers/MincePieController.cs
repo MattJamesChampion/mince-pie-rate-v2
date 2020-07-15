@@ -43,8 +43,17 @@ namespace MincePieRateV2.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Add(MincePie mincePie, [FromForm] IFormFile mincePieImage)
         {
-            var imageId = await _imageManager.AddImageAsync(mincePieImage);
-            mincePie.ImageId = imageId;
+            Guid imageId;
+            try
+            {
+                imageId = await _imageManager.AddImageAsync(mincePieImage);
+                mincePie.ImageId = imageId;
+            }
+            catch(ArgumentException)
+            {
+                ModelState.AddModelError(string.Empty, "Provided file must be an image");
+                return View(mincePie);
+            }
 
             _mincePieRepository.Add(mincePie);
             return RedirectToAction(nameof(Index));
