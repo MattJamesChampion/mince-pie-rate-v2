@@ -39,8 +39,12 @@ namespace MincePieRateV2.DAL.Managers
             if (guid != Guid.Empty)
             {
                 var absoluteFilePath = Directory.EnumerateFiles(imageOutputDirectory, guid.ToString() + ".*").FirstOrDefault();
-                var fileName = Path.GetFileName(absoluteFilePath);
-                return Path.Combine(@"\images", fileName);
+                if (!string.IsNullOrEmpty(absoluteFilePath))
+                {
+                    var fileName = Path.GetFileName(absoluteFilePath);
+                    return Path.Combine(@"\images", fileName);
+                }
+                return string.Empty;
             }
             else
             {
