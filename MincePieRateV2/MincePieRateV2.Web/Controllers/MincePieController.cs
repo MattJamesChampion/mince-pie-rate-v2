@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using MincePieRateV2.DAL.Managers;
 using MincePieRateV2.DAL.Repositories;
 using MincePieRateV2.Models.Domain;
+using MincePieRateV2.ViewModels.Domain;
 using MincePieRateV2.Web.Authorization.Constants;
 
 namespace MincePieRateV2.Web.Controllers
@@ -18,11 +20,13 @@ namespace MincePieRateV2.Web.Controllers
     {
         private readonly IRepository<MincePie> _mincePieRepository;
         private readonly IImageManager _imageManager;
+        private readonly IMapper _mapper;
 
-        public MincePieController(IRepository<MincePie> mincePieRepository, IImageManager imageManager)
+        public MincePieController(IRepository<MincePie> mincePieRepository, IImageManager imageManager, IMapper mapper)
         {
             _mincePieRepository = mincePieRepository;
             _imageManager = imageManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -41,18 +45,19 @@ namespace MincePieRateV2.Web.Controllers
 
         [HttpPost("Add")]
         [Authorize]
-        public async Task<IActionResult> Add(MincePie mincePie, [FromForm] IFormFile mincePieImage)
+        public async Task<IActionResult> Add(MincePieCreateViewModel mincePieCreateViewModel)
         {
             Guid imageId;
+            var mincePie = _mapper.Map<MincePie>(mincePieCreateViewModel);
             try
             {
-                imageId = await _imageManager.AddImageAsync(mincePieImage);
+                imageId = await _imageManager.AddImageAsync(mincePieCreateViewModel.Image);
                 mincePie.ImageId = imageId;
             }
             catch(ArgumentException)
             {
-                ModelState.AddModelError(string.Empty, "Provided file must be an image");
-                return View(mincePie);
+                ModelState.AddModelError(nameof(mincePieCreateViewModel.Image), "Provided file must be an image");
+                return View(mincePieCreateViewModel);
             }
 
             _mincePieRepository.Add(mincePie);
