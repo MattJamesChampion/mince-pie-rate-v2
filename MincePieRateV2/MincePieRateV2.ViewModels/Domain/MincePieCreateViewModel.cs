@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MincePieRateV2.ViewModels.Domain
 {
-    public class MincePieDisplayViewModel
+    public class MincePieCreateViewModel
     {
             public int Id { get; set; }
             [Required]
