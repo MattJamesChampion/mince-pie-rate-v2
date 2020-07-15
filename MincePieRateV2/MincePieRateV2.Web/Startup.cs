@@ -75,6 +75,7 @@ namespace MincePieRateV2.Web
                 .AddMvc(options =>
                 {
                     options.Filters.Add(typeof(UserInitialiserActionFilter));
+                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
