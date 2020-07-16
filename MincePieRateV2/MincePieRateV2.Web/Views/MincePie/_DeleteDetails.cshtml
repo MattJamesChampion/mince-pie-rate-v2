@@ -1,12 +1,8 @@
-﻿@model MincePieRateV2.Models.Domain.MincePie
+﻿@model MincePieRateV2.ViewModels.Domain.MincePieDetailsViewModel
 
-@{ 
-    var imagePath = (string)ViewData["ImagePath"];
-}
-
-@if (!string.IsNullOrWhiteSpace(imagePath))
+@if (!string.IsNullOrWhiteSpace(Model.ImagePath))
 {
-    <img class="img" src="@Url.Content(imagePath)" />
+    <img class="img" src="@Url.Content(Model.ImagePath)" />
 }
 
 <dl class="row">

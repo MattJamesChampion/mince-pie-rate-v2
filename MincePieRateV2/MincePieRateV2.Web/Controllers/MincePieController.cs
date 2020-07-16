@@ -33,7 +33,8 @@ namespace MincePieRateV2.Web.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            return View(_mincePieRepository.GetEntities());
+            var mincePies = _mincePieRepository.GetEntities();
+            return View(_mapper.Map<IEnumerable<MincePieDetailsViewModel>>(mincePies));
         }
 
         [HttpGet("Add")]
@@ -69,8 +70,9 @@ namespace MincePieRateV2.Web.Controllers
         public async Task<IActionResult> Details(int Id)
         {
             var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
-            ViewData["ImagePath"] = await SetupImagePath(mincePie);
-            return View(mincePie);
+            var mincePieViewModel = _mapper.Map<MincePieDetailsViewModel>(mincePie);
+            mincePieViewModel.ImagePath = await SetupImagePath(mincePie);
+            return View(mincePieViewModel);
         }
 
         [HttpGet("Edit/{Id:int}")]
@@ -78,14 +80,16 @@ namespace MincePieRateV2.Web.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
-            ViewData["ImagePath"] = await SetupImagePath(mincePie);
-            return View(mincePie);
+            var mincePieViewModel = _mapper.Map<MincePieDetailsViewModel>(mincePie);
+            mincePieViewModel.ImagePath = await SetupImagePath(mincePie);
+            return View(mincePieViewModel);
         }
 
         [HttpPost("Edit/{Id:int}")]
         [Authorize(Roles = RoleConstants.AdministratorRoleName)]
-        public IActionResult Edit(MincePie mincePie)
+        public IActionResult Edit(MincePieDetailsViewModel mincePieViewModel)
         {
+            var mincePie = _mapper.Map<MincePie>(mincePieViewModel);
             _mincePieRepository.Update(mincePie);
             return RedirectToAction(nameof(Index));
         }
@@ -95,14 +99,16 @@ namespace MincePieRateV2.Web.Controllers
         public async Task<IActionResult> Delete(int Id)
         {
             var mincePie = _mincePieRepository.GetEntity(m => m.Id == Id);
-            ViewData["ImagePath"] = await SetupImagePath(mincePie);
-            return View(mincePie);
+            var mincePieViewModel = _mapper.Map<MincePieDetailsViewModel>(mincePie);
+            mincePieViewModel.ImagePath = await SetupImagePath(mincePie);
+            return View(mincePieViewModel);
         }
 
         [HttpPost("Delete/{Id:int}")]
         [Authorize(Roles = RoleConstants.AdministratorRoleName)]
-        public IActionResult Delete(MincePie mincePie)
+        public IActionResult Delete(MincePieDetailsViewModel mincePieViewModel)
         {
+            var mincePie = _mapper.Map<MincePie>(mincePieViewModel);
             _mincePieRepository.Delete(mincePie);
             return RedirectToAction(nameof(Index));
         }
