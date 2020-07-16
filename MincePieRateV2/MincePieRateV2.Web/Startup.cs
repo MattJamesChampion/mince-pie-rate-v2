@@ -41,6 +41,7 @@ namespace MincePieRateV2.Web
             public MappingProfile()
             {
                 CreateMap<MincePieCreateViewModel, MincePie>();
+                CreateMap<MincePieDetailsViewModel, MincePie>().ReverseMap();
             }
         }
 
