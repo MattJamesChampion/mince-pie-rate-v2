@@ -1,8 +1,8 @@
-﻿@using  MincePieRateV2.Models.Domain
-@model MincePieRateV2.Models.Domain.Review
+﻿@using MincePieRateV2.ViewModels.Domain
+@model MincePieRateV2.ViewModels.Domain.ReviewViewModel
 
-@{ 
-    var mincePies = (IEnumerable<MincePie>)ViewData["MincePies"];
+@{
+    var mincePies = (IEnumerable<MincePieDetailsViewModel>)ViewData["MincePies"];
 }
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
