@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -16,11 +17,13 @@ namespace MincePieRateV2.Web.Controllers
     {
         private readonly IRepository<Review> _reviewRepository;
         private readonly IRepository<MincePie> _mincePieRepository;
+        private readonly IMapper _mapper;
 
-        public ReviewController(IRepository<Review> reviewRepository, IRepository<MincePie> mincePieRepository)
+        public ReviewController(IRepository<Review> reviewRepository, IRepository<MincePie> mincePieRepository, IMapper mapper)
         {
             _reviewRepository = reviewRepository;
             _mincePieRepository = mincePieRepository;
+            _mapper = mapper;
         }
 
         private void SetupDropdowns(ViewDataDictionary viewData)
