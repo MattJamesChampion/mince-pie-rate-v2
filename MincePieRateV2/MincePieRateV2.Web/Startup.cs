@@ -42,6 +42,7 @@ namespace MincePieRateV2.Web
             {
                 CreateMap<MincePieCreateViewModel, MincePie>();
                 CreateMap<MincePieDetailsViewModel, MincePie>().ReverseMap();
+                CreateMap<ReviewViewModel, Review>().ReverseMap();
             }
         }
 
