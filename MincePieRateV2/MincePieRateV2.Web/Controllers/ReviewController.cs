@@ -37,7 +37,7 @@ namespace MincePieRateV2.Web.Controllers
         public IActionResult Index()
         {
             var reviews = _reviewRepository.GetEntities();
-            return View(_mapper.Map<IEnumerable<ReviewViewModel>>(reviews));
+            return View(_mapper.Map<IEnumerable<ReviewDetailsViewModel>>(reviews));
         }
 
         [HttpGet("Add")]
@@ -50,7 +50,7 @@ namespace MincePieRateV2.Web.Controllers
 
         [HttpPost("Add")]
         [Authorize]
-        public IActionResult Add(ReviewViewModel reviewViewModel)
+        public IActionResult Add(ReviewDetailsViewModel reviewViewModel)
         {
             var review = _mapper.Map<Review>(reviewViewModel);
             _reviewRepository.Add(review);
@@ -62,7 +62,7 @@ namespace MincePieRateV2.Web.Controllers
         public IActionResult Details(int Id)
         {
             var review = _reviewRepository.GetEntity(m => m.Id == Id);
-            return View(_mapper.Map<ReviewViewModel>(review));
+            return View(_mapper.Map<ReviewDetailsViewModel>(review));
         }
 
         [HttpGet("Edit/{Id:int}")]
@@ -71,12 +71,12 @@ namespace MincePieRateV2.Web.Controllers
         {
             SetupDropdowns(ViewData);
             var review = _reviewRepository.GetEntity(m => m.Id == Id);
-            return View(_mapper.Map<ReviewViewModel>(review));
+            return View(_mapper.Map<ReviewDetailsViewModel>(review));
         }
 
         [HttpPost("Edit/{Id:int}")]
         [Authorize(Roles = RoleConstants.AdministratorRoleName)]
-        public IActionResult Edit(ReviewViewModel reviewViewModel)
+        public IActionResult Edit(ReviewDetailsViewModel reviewViewModel)
         {
             var review = _mapper.Map<Review>(reviewViewModel);
             _reviewRepository.Update(review);
@@ -88,12 +88,12 @@ namespace MincePieRateV2.Web.Controllers
         public IActionResult Delete(int Id)
         {
             var review = _reviewRepository.GetEntity(m => m.Id == Id);
-            return View(_mapper.Map<ReviewViewModel>(review));
+            return View(_mapper.Map<ReviewDetailsViewModel>(review));
         }
 
         [HttpPost("Delete/{Id:int}")]
         [Authorize(Roles = RoleConstants.AdministratorRoleName)]
-        public IActionResult Delete(ReviewViewModel reviewViewModel)
+        public IActionResult Delete(ReviewDetailsViewModel reviewViewModel)
         {
             var review = _mapper.Map<Review>(reviewViewModel);
             _reviewRepository.Delete(review);

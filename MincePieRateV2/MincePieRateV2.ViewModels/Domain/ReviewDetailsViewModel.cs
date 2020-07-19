@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MincePieRateV2.ViewModels.Domain
 {
-    public class ReviewViewModel
+    public class ReviewDetailsViewModel
     {
         //Primary Key
         public int Id { get; set; }
