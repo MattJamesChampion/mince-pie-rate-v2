@@ -44,13 +44,16 @@ namespace MincePieRateV2.Web.Controllers
         [Authorize]
         public IActionResult Add()
         {
-            SetupDropdowns(ViewData);
-            return View();
+            var reviewViewModel = new ReviewCreateEditViewModel
+            {
+                MincePies = _mapper.Map<IEnumerable<MincePieDetailsViewModel>>(_mincePieRepository.GetEntities())
+            };
+            return View(reviewViewModel);
         }
 
         [HttpPost("Add")]
         [Authorize]
-        public IActionResult Add(ReviewDetailsViewModel reviewViewModel)
+        public IActionResult Add(ReviewCreateEditViewModel reviewViewModel)
         {
             var review = _mapper.Map<Review>(reviewViewModel);
             _reviewRepository.Add(review);
@@ -69,14 +72,15 @@ namespace MincePieRateV2.Web.Controllers
         [Authorize(Roles = RoleConstants.AdministratorRoleName)]
         public IActionResult Edit(int Id)
         {
-            SetupDropdowns(ViewData);
             var review = _reviewRepository.GetEntity(m => m.Id == Id);
-            return View(_mapper.Map<ReviewDetailsViewModel>(review));
+            var reviewViewModel = _mapper.Map<ReviewCreateEditViewModel>(review);
+            reviewViewModel.MincePies = _mapper.Map<IEnumerable<MincePieDetailsViewModel>>(_mincePieRepository.GetEntities());
+            return View(reviewViewModel);
         }
 
         [HttpPost("Edit/{Id:int}")]
         [Authorize(Roles = RoleConstants.AdministratorRoleName)]
-        public IActionResult Edit(ReviewDetailsViewModel reviewViewModel)
+        public IActionResult Edit(ReviewCreateEditViewModel reviewViewModel)
         {
             var review = _mapper.Map<Review>(reviewViewModel);
             _reviewRepository.Update(review);
