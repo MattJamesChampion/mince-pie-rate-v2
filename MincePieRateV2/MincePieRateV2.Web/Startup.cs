@@ -19,6 +19,8 @@ using MincePieRateV2.Models.Domain;
 using MincePieRateV2.DAL.ActionFilters;
 using MincePieRateV2.Web.Authorization.Constants;
 using MincePieRateV2.DAL.Managers;
+using AutoMapper;
+using MincePieRateV2.ViewModels.Domain;
 
 namespace MincePieRateV2.Web
 {
@@ -33,6 +35,17 @@ namespace MincePieRateV2.Web
         }
 
         public IConfiguration Configuration { get; }
+
+        public class MappingProfile : Profile
+        {
+            public MappingProfile()
+            {
+                CreateMap<MincePieCreateViewModel, MincePie>();
+                CreateMap<MincePieDetailsViewModel, MincePie>().ReverseMap();
+                CreateMap<ReviewDetailsViewModel, Review>().ReverseMap();
+                CreateMap<ReviewCreateEditViewModel, Review>().ReverseMap();
+            }
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -53,10 +66,19 @@ namespace MincePieRateV2.Web
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services
                 .AddMvc(options =>
                 {
                     options.Filters.Add(typeof(UserInitialiserActionFilter));
+                    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
